@@ -33,6 +33,30 @@ This repository contains the Zodiac mastercopy tooling: a CLI and TypeScript SDK
 
 The Zodiac core contracts (`Module.sol`, `Modifier.sol`, `BaseGuard.sol`, `ModuleProxyFactory.sol`, etc.), along with their tests and audits, live in [zodiac-core](https://github.com/gnosisguild/zodiac-core). If you are building a module, modifier, or guard, use the `@gnosis-guild/zodiac-core` package.
 
+## contracts/
+
+This fork also carries the Zodiac module base that is deployed behind the Lux DAO
+module masters (`ModuleGovernorV1`, `ModuleFractalV1` on Zoo 200200 and Pars 494949).
+It is Zodiac code under LGPL-3.0, so it lives here rather than in `luxdao/contracts`.
+
+```
+contracts/core/GuardableModule.sol
+contracts/interfaces/IAvatar.sol
+contracts/interfaces/IGuard.sol
+```
+
+`GuardableModule` is the Zodiac 3.x-style module and differs from `zodiac-core` 4.x on
+purpose: `setAvatar`, `setTarget` and `setGuard` are gated on the avatar rather than an
+owner, `setGuard` performs no ERC-165 check, guards are called through
+`IGuard.checkTransaction` rather than `IModuleGuard.checkModuleTransaction`, and there
+is no `execAndReturnData`. The live masters depend on that shape, so it is not
+reconciled with upstream.
+
+Safe's `Enum` is imported as `@luxfi/safe/interfaces/Enum.sol` and resolved to a
+`luxfi/safe` checkout beside this repo (`../safe`). `forge build` compiles the three
+files; a consumer adds the same `@luxfi/safe/` remapping plus
+`@luxdao/zodiac/=<path to this repo>/contracts/`.
+
 ### Installation
 
 ```bash

@@ -1,0 +1,11 @@
+# The Zodiac module base behind the Lux DAO module masters. Safe's Enum resolves to the
+# luxfi/safe checkout beside this repo, the way luxdao/contracts reaches luxfi/standard.
+[profile.default]
+src = "contracts"
+allow_paths = ["../safe"]
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+solc_version = "0.8.31"
+evm_version = "cancun"
+remappings = ["@luxfi/safe/=../safe/contracts/"]

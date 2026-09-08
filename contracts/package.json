@@ -1,0 +1,8 @@
+{
+  "name": "@luxdao/zodiac",
+  "version": "5.0.1",
+  "description": "Solidity sources of @luxdao/zodiac, importable as @luxdao/zodiac/<path>.sol",
+  "license": "LGPL-3.0-only",
+  "files": ["**/*.sol"],
+  "repository": "github:luxdao/zodiac"
+}
